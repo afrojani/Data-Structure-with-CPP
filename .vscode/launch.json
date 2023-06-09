@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/my things/Basic Data Structure and problem solving with CPP",
-      "program": "c:/my things/Basic Data Structure and problem solving with CPP/build/Debug/outDebug",
+      "cwd": "c:/my things/Basic Data Structure and problem solving with CPP/Sorting Algorithms",
+      "program": "c:/my things/Basic Data Structure and problem solving with CPP/Sorting Algorithms/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
