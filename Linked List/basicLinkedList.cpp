@@ -69,6 +69,17 @@ public:
     // search all possible occurrence
     void SearchAllvalue(int value)
     {
+        node *a = head;
+        int index = 0;
+        while (a != NULL)
+        {
+            if (a->data == value)
+            {
+                cout << value << " is found at index " << index << "\n";
+            }
+            a = a->nxt;
+            index++;
+        }
     }
 };
 
