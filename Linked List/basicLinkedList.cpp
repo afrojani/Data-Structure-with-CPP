@@ -42,6 +42,13 @@ public:
     // prints the linked list
     void Traverse()
     {
+        node *a = head;
+        while (a != NULL)
+        {
+            cout << a->data << " ";
+            a = a->nxt;
+        }
+        cout << "\n";
     }
     // search for a single value
     void SearchDistinctValue(int value)
