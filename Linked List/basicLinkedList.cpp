@@ -51,8 +51,20 @@ public:
         cout << "\n";
     }
     // search for a single value
-    void SearchDistinctValue(int value)
+    int SearchDistinctValue(int value)
     {
+        node *a = head;
+        int index = 0;
+        while (a != NULL)
+        {
+            if (a->data == value)
+            {
+                return index;
+            }
+            a = a->nxt;
+            index++;
+        }
+        return -1;
     }
     // search all possible occurrence
     void SearchAllvalue(int value)
@@ -70,8 +82,10 @@ int main()
     l.InsertAtHead(30);
 
     l.Traverse();
-    l.SearchDistinctValue(10);
-    l.SearchDistinctValue(5);
+    cout << "10 is found at " << l.SearchDistinctValue(10) << "\n";
+    cout << "5 is found at " << l.SearchDistinctValue(5) << "\n";
+    cout << "30 is found at " << l.SearchDistinctValue(30) << "\n";
+
     l.SearchAllvalue(30);
     return 0;
 }
