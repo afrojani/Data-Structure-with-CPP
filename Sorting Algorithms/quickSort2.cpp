@@ -1,16 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> quick_sort(vector<int> &a)
+vector<int> quicksort(vector<int> &a, int n)
 {
-    if (a.size() <= 1)
+    if (n <= 1)
         return a;
 
-    int pivot = a.size() - 1; /*last index ta pivot hisebe nile,
-    array er size theke 1 minus korte hobe as index starts from 0.*/
+    int pivot = n / 2;
 
     vector<int> b, c;
-    for (int i = 0; i < a.size(); i++)
+    for (int i = 0; i < n; i++)
     {
         if (i == pivot)
             continue;
@@ -23,8 +22,8 @@ vector<int> quick_sort(vector<int> &a)
             c.push_back(a[i]);
         }
     }
-    vector<int> sorted_b = quick_sort(b);
-    vector<int> sorted_c = quick_sort(c);
+    vector<int> sorted_b = quicksort(b, b.size());
+    vector<int> sorted_c = quicksort(c, c.size());
     vector<int> sorted_a;
     for (int i = 0; i < sorted_b.size(); i++)
     {
@@ -32,7 +31,6 @@ vector<int> quick_sort(vector<int> &a)
     }
 
     sorted_a.push_back(a[pivot]);
-
     for (int i = 0; i < sorted_c.size(); i++)
     {
         sorted_a.push_back(sorted_c[i]);
@@ -43,11 +41,21 @@ vector<int> quick_sort(vector<int> &a)
 
 int main()
 {
-    vector<int> a = {5, 2, 3, 5, 4, 1};
-    vector<int> sorted_a = quick_sort(a);
-    for (int i = 0; i < sorted_a.size(); i++)
+    int n;
+    cin >> n;
+    vector<int> a;
+    int input;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> input;
+        a.push_back(input);
+    }
+
+    vector<int> sorted_a = quicksort(a, n);
+    for (int i = 0; i < n; i++)
     {
         cout << sorted_a[i] << " ";
     }
+    cout << "\n";
     return 0;
 }
