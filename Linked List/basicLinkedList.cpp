@@ -12,10 +12,12 @@ class LinkedList
 {
 public:
     node *head;
+    int sz;
 
     LinkedList()
     {
         head = NULL;
+        sz = 0;
     }
     // Creates a new node with data = value and nxt = NULL
     node *CreateNewNode(int value)
@@ -29,6 +31,7 @@ public:
     // insert new value at head
     void InsertAtHead(int value)
     {
+        sz++;
         node *a = CreateNewNode(value);
         if (head == NULL)
         {
@@ -81,6 +84,87 @@ public:
             index++;
         }
     }
+
+    int getSize() /*
+       ei function diye linked list er size
+        ber korte O(1) complexity lage*/
+    {
+        return sz;
+    }
+
+    /*
+        ei function diye linked list er size
+         ber korte O(n) complexity lage
+        int getSize()
+        {
+            int sz = 0;
+            node *a = head;
+            while (a != NULL)
+            {
+                sz++;
+                a = a->nxt;
+            }
+            return sz;
+        }
+    */
+
+    void insertAtAnyIndex(int index, int value)
+    {
+        if (index < 0 || index > sz)
+        {
+            return;
+        }
+        if (index == 0)
+        {
+            InsertAtHead(value);
+            return;
+        }
+        sz++;
+        node *a = head;
+        int cur_index = 0;
+        while (cur_index != index - 1)
+        {
+            a = a->nxt;
+            cur_index++;
+        }
+        node *newnode = CreateNewNode(value);
+        newnode->nxt = a->nxt;
+        a->nxt = newnode;
+    }
+    void deleteAtHead()
+    {
+        if (head == NULL)
+        {
+            return;
+        }
+        sz--;
+        node *a = head;
+        head = a->nxt;
+        delete a;
+    }
+    void deleteAnyindex(int index)
+    {
+        if (index < 0 || index > sz - 1)
+        {
+            return;
+        }
+        if (index == 0)
+        {
+            deleteAtHead();
+            return;
+        }
+        sz--;
+        node *a = head;
+        int cur_index = 0;
+        while (cur_index != index - 1)
+        {
+            a = a->nxt;
+            cur_index++;
+        }
+        node *b = a->nxt;
+        a->nxt = b->nxt;
+        delete b;
+    }
 };
 
 int main()
@@ -93,10 +177,19 @@ int main()
     l.InsertAtHead(30);
 
     l.Traverse();
+    cout << l.getSize() << "\n";
     cout << "10 is found at " << l.SearchDistinctValue(10) << "\n";
     cout << "5 is found at " << l.SearchDistinctValue(5) << "\n";
     cout << "30 is found at " << l.SearchDistinctValue(30) << "\n";
 
     l.SearchAllvalue(30);
+    l.insertAtAnyIndex(2, 99);
+    l.Traverse();
+    l.deleteAtHead();
+    l.Traverse();
+    cout << l.getSize() << "\n";
+    l.deleteAnyindex(3);
+    l.Traverse();
+    cout << l.getSize() << "\n";
     return 0;
 }
