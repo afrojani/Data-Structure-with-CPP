@@ -14,12 +14,14 @@ public:
     node *head;
     int sz;
 
+    // eta ekta constructor jeta linkedlist class er kichu primary value set kore.
     LinkedList()
     {
         head = NULL;
         sz = 0;
     }
     // Creates a new node with data = value and nxt = NULL
+    // eta ekta function jeta node return kore.
     node *CreateNewNode(int value)
     {
         node *newnode = new node;
@@ -186,6 +188,20 @@ public:
         newnode->nxt = a->nxt;
         a->nxt = newnode;
     }
+    void reverseFunc(node *a)
+    {
+        if (a == NULL)
+            return;
+
+        reverseFunc(a->nxt);
+        cout << a->data << " ";
+    }
+
+    void reversePrint()
+    {
+        reverseFunc(head);
+        cout << "\n";
+    }
 };
 
 int main()
@@ -215,5 +231,6 @@ int main()
     l.insertAfterValue(20, 55);
     l.Traverse();
     cout << l.getSize() << "\n";
+    l.reversePrint();
     return 0;
 }
