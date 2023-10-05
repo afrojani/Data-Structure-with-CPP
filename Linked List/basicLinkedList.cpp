@@ -165,6 +165,27 @@ public:
         a->nxt = b->nxt;
         delete b;
     }
+    void insertAfterValue(int value, int data)
+    {
+        node *a = head;
+        while (a != NULL)
+        {
+            if (a->data == value)
+            {
+                break;
+            }
+            a = a->nxt;
+        }
+        if (a == NULL)
+        {
+            cout << value << "is not found.";
+            return;
+        }
+        sz++;
+        node *newnode = CreateNewNode(data);
+        newnode->nxt = a->nxt;
+        a->nxt = newnode;
+    }
 };
 
 int main()
@@ -189,6 +210,9 @@ int main()
     l.Traverse();
     cout << l.getSize() << "\n";
     l.deleteAnyindex(3);
+    l.Traverse();
+    cout << l.getSize() << "\n";
+    l.insertAfterValue(20, 55);
     l.Traverse();
     cout << l.getSize() << "\n";
     return 0;
