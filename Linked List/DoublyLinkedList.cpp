@@ -71,6 +71,38 @@ public:
         sz++;
     }
 
+    void Delete(int index)
+    {
+        if (index >= sz)
+        {
+            cout << index << "doesn't exist.\n";
+            return;
+        }
+        node *a = head;
+        int cur_idx = 0;
+        while (cur_idx != index)
+        {
+            a = a->nxt;
+            cur_idx++;
+        }
+        node *b = a->prv;
+        node *c = a->nxt;
+        if (b != NULL)
+        {
+            b->nxt = c;
+        }
+        if (c != NULL)
+        {
+            c->prv = b;
+        }
+        delete a;
+        if (index == 0)
+        {
+            head = c;
+        }
+        sz--;
+    }
+
     void Traverse()
     {
         node *a = head;
@@ -98,6 +130,8 @@ int main()
     dl.Insert(1, 99);
     dl.Traverse();
     cout << dl.getSize() << "\n";
+    dl.Delete(2);
+    dl.Traverse();
 
     return 0;
 }
