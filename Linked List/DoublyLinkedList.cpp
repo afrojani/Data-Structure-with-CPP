@@ -103,6 +103,29 @@ public:
         sz--;
     }
 
+    void Reverse()
+    {
+        if (head == NULL)
+        {
+            return;
+        }
+        node *a = head;
+        int cur_idx = 0;
+        while (cur_idx != sz - 1)
+        {
+            a = a->nxt;
+            cur_idx++;
+        }
+
+        node *b = head;
+        while (b != NULL)
+        {
+            swap(b->nxt, b->prv);
+            b = b->prv;
+        }
+        head = a;
+    }
+
     void Traverse()
     {
         node *a = head;
@@ -131,6 +154,8 @@ int main()
     dl.Traverse();
     cout << dl.getSize() << "\n";
     dl.Delete(2);
+    dl.Traverse();
+    dl.Reverse();
     dl.Traverse();
 
     return 0;
